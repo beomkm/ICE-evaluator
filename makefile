@@ -1,12 +1,16 @@
-BUILD = go build
-MAIN = main.go
+GLC = go build
+OUTDIR = ./build
+RELEASE_FLG = "-s -w"
 
-all: main
+all: debug
 
-main: main.go
-	$(BUILD)
+debug: main.go
+	$(GLC) -o $(OUTDIR)/debug-evaluator
+
+release: main.go
+	$(GLC) -o $(OUTDIR)/evaluator -ldflags $(RELEASE_FLG)
 
 clean:
-	rm ./ice-evaluator
+	rm -rf ./build/*
 
 
